@@ -1,3 +1,4 @@
+/* --- NUEVOS ESTILOS PARA FUENTES E INTRODUCCIÓN CON FONDO --- */
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
 
 body {
@@ -7,31 +8,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f3e8f0; /* Un lila muy clarito de fondo general */
+    background-color: #fcf7fa; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden; 
 }
 
-/* Contenedor principal con márgenes estilo pantalla completa */
-.main-container {
-    width: 90vw; 
-    height: 90vh; 
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: none !important;
-    background-color: transparent !important;
-     
-}
-
-/* Lógica de capas y desvanecimiento al cambiar de página */
+/* --- NUEVA LÓGICA DE CAPAS Y DESVANECIMIENTO AL CAMBIAR DE PÁGINA --- */
 .page {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     opacity: 0;
     visibility: hidden;
-    /* 0.8s es un desvanecimiento ideal, ni muy rápido ni aburrido */
-    transition: opacity 0.8s ease-in-out, visibility 0.8s; 
+    transition: opacity 1.2s ease-in-out, visibility 1.2s; /* Desvanecimiento suave pero ágil */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,24 +30,24 @@ body {
     visibility: visible;
 }
 
-/* La imagen de fondo estática que ocupa todo el contenedor */
+/* --- CAPA DE LA IMAGEN DE FONDO --- */
 .bg-image {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
-    z-index: 1; 
+    z-index: 1; /* <-- Corregido para que se vea siempre */
 }
 
-/* Animaciones de la primera pantalla */
+/* --- ANIMACIONES DE LA PÁGINA 1 (INTRO) --- */
 .intro-text {
     opacity: 0;
-    animation: slideUpFade 1.2s ease forwards 0.3s; 
+    animation: slideUpFade 1.5s ease forwards 0.5s; 
 }
 
 .intro-bg {
     opacity: 0;
-    animation: fadeInBg 1.5s ease forwards 1.2s; 
+    animation: fadeInBg 2s ease forwards 1.2s; 
 }
 
 @keyframes slideUpFade {
@@ -72,83 +60,69 @@ body {
     100% { opacity: 1; }
 }
 
-/* El cuadro Liquid Glass / Glassmorphism */
+/* --- DISEÑO DEL CUADRO DE CRISTAL (GLASSMORPHISM) --- */
 .glass-card {
-    background: rgba(255, 255, 255, 0.5); 
+    background: rgba(255, 255, 255, 0.4); 
     backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px); 
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 50px 40px;
     border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important; /*cite: 1, 2*/
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
     max-width: 450px;
     width: 80%;
-    position: relative;
-    z-index: 2;
+    position: relative; /* <-- Necesario para que el z-index funcione */
+    z-index: 2;         /* <-- Asegura que quede siempre sobre el fondo */
 }
 
+/* --- ESTILOS DE TEXTO CON FUENTES ELEGANTES --- */
 .main-title {
     font-family: 'Pacifico', cursive; /* Fuente caligráfica elegante */
-    font-size: 3.5rem; /* Un poco más grande para el nuevo estilo */
-    color: #8e44ad; /* Lila principal */
+    font-size: 3.5rem;
+    color: #8e44ad; 
     margin: 0 0 30px 0;
     letter-spacing: 2px;
-    /* Un pequeño perfilado blanco para que resalte más sobre el cristal y el fondo */
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
 .instruction {
-    font-family: 'Playfair Display', serif; /* Fuente con serifa elegante e itálica */
+    font-family: 'Playfair Display', serif; /* Fuente con serifa itálica elegante */
     font-style: italic;
     font-weight: 600;
     font-size: 1.6rem;
-    color: #333; /* Gris oscuro para lectura */
+    color: #333; 
     margin: 0 0 30px 0;
     line-height: 1.4;
-    /* Un pequeño perfilado lila para integrarla */
     text-shadow: -1px -1px 0 #e6dff0, 1px -1px 0 #e6dff0, -1px 1px 0 #e6dff0, 1px 1px 0 #e6dff0;
 }
 
+/* --- ESTILO FIJO PARA EL BOTÓN (RELLENO Y REDONDEADO) --- */
 button {
-    /* Fuente elegante y grosor establecidos anteriormente */
     font-family: 'Playfair Display', serif; /* cite: 4 */
     font-weight: bold; /* cite: 3, 4 */
     font-size: 1.25rem; /* cite: 4 */
     
-    /* Colores base: texto blanco sobre fondo lila suave */
     color: white; /* cite: 1, 2, 3, 4 */
-    background-color: #b39ddb; /* Lila base cite: 1, 2, 3 */
+    background-color: #b39ddb; /* cite: 1, 2, 3 */ /* Lila base */
     
-    /* ESTE ES EL CAMBIO CLAVE: Elimina cualquier borde 'feo' de forma fija cite: 1, 2, 3 */
-    border: none; 
-    
-    /* Espaciado y forma redondeada profesional */
+    border: none; /* <-- CLAVE: Sin bordes 'feos' fijos cite: 1, 2, 3 */
     padding: 15px 35px; /* cite: 3, 4 */
     border-radius: 30px; /* cite: 3, 4 */
     
-    /* Indicador de clic y transición suave para animaciones cite: 1, 2, 3 */
     cursor: pointer;
     transition: all 0.3s ease; /* cite: 3 */
     
-    /* Perfilado de texto establecido para legibilidad cite: 4 */
     text-shadow: -1px -1px 0 #8e44ad, 1px -1px 0 #8e44ad, -1px 1px 0 #8e44ad, 1px 1px 0 #8e44ad;
 }
 
 button:hover {
-    /* Cambia a un lila más oscuro cite: 3, 4 */
-    background-color: #9b59b6; 
-    
-    /* Efecto de escalado suave cite: 1, 2, 3, 4 */
-    transform: scale(1.05); 
-    
-    /* Sombra profesional cite: 3 */
-    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4); 
-    
-    /* IMPORTANTE: No añadimos 'border: ...' aquí, para mantener el diseño limpio. */
+    background-color: #9b59b6; /* cite: 3, 4 */ /* Lila más oscuro al pasar cite: 3 */
+    transform: scale(1.05); /* cite: 1, 2, 3, 4 */
+    box-shadow: 0 5px 15px rgba(155, 89, 182, 0.4); /* cite: 3 */
 }
 
-/* Flores */
+/* --- ESTILO PARA LAS FLORES CAYENDO --- */
 .flower {
     position: absolute;
     top: -50px;
@@ -158,18 +132,67 @@ button:hover {
     pointer-events: none; 
 }
 
-.bg-image-blur {
-    position: fixed; /*cite: 1*/
-    top: 0; left: 0; width: 100%; height: 100%; /*cite: 1, 2*/
-    background-size: cover; /*cite: 1, 2*/
-    background-position: center; /*cite: 1, 2*/
-    z-index: -2; /*cite: 1, 2*/ /* Por detrás de todo, incluso de la foto nítida */
-    
-    /* EFECTO CLAVE: Desenfoque extremo y oscurecimiento sutil para contraste */
-    filter: blur(50px) brightness(0.9); /*cite: 1, 2*/
-    -webkit-filter: blur(50px) brightness(0.9); /* Compatibilidad con Safari/Chrome antiguos cite: 2*/
-}
-
 @keyframes fall {
     to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* --- NUEVOS ESTILOS PARA EL FONDO DESENFOCADO --- */
+.bg-image-blur {
+    position: fixed; /* cite: 1 */
+    top: 0; left: 0; width: 100%; height: 100%; /* cite: 1, 2 */
+    background-size: cover; /* cite: 1, 2 */
+    background-position: center; /* cite: 1, 2 */
+    z-index: -2; /* cite: 1, 2 */
+    filter: blur(50px) brightness(0.9); /* cite: 1, 2 */
+    -webkit-filter: blur(50px) brightness(0.9); /* cite: 2 */
+}
+
+/* --- CONTENEDOR PRINCIPAL CON MÁRGENES ESTILO PANTALLA COMPLETA --- */
+.main-container {
+    width: 90vw; 
+    height: 90vh; 
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    background-color: transparent !important; /* cite: 1, 2 */
+}
+
+.glass-card {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important; /* cite: 1, 2 */
+}
+
+/* --- MEDIA QUERY PARA PANTALLAS VERTICALES (RESPONSIVO MÓVIL) --- */
+@media (max-width: 768px) {
+    /* El contenedor principal ocupa toda la pantalla en móviles */
+    .main-container {
+        width: 100vw; /* cite: 2 */
+        height: 100vh; /* cite: 2 */
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none; /* Opcional: quitar sombra para un look más limpio */
+    }
+
+    /* Rediseñar el cuadro central para que no ocupe todo el ancho */
+    .glass-card {
+        width: 85%; /* Más aire a los lados cite: 3 */
+        padding: 30px 20px; /*cite: 3*/ /* Menos padding vertical cite: 3 */
+        max-width: 380px; /* Un poco más estrecho en el maximo cite: 3 */
+    }
+
+    /* Reducir el tamaño de las fuentes para legibilidad perfecta */
+    .main-title {
+        font-size: 2.2rem; /*cite: 3*/ /* Título más pequeño cite: 3 */
+        margin-bottom: 20px; /*cite: 3*/
+    }
+
+    .instruction {
+        font-size: 1.2rem; /*cite: 3*/ /* Instrucción más pequeña cite: 3 */
+        margin-bottom: 20px; /*cite: 3*/
+    }
+
+    button {
+        padding: 12px 30px; /* cite: 3 */ /* Botones más pequeños cite: 3 */
+        font-size: 1.1rem; /*cite: 3*/ /* Texto de botón más pequeño cite: 3 */
+    }
 }
