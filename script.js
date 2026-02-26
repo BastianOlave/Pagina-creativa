@@ -1,68 +1,76 @@
+// --- INICIALIZAR EL FONDO DESENFOCADO ---
 window.onload = function() {
-    const bgBlur = document.getElementById('page-bg-blur'); /*cite: 1*/
+    const bgBlur = document.getElementById('page-bg-blur');
     if (bgBlur) {
-        bgBlur.style.backgroundImage = "url('foto1.jpg')"; /*cite: 1*/
+        bgBlur.style.backgroundImage = "url('foto1.jpg')";
     }
 };
 
+// --- LÓGICA DE TRANSICIÓN DE PÁGINAS Y FONDO ---
 function nextPage(pageNumber) {
-    // Quitamos la clase 'active' de todas las páginas para ocultarlas suavemente cite: 1, 2
-    const pages = document.querySelectorAll('.page'); /*cite: 1*/
-    pages.forEach(page => page.classList.remove('active')); /*cite: 1*/
+    // Asegurarnos de que la tarjeta sea visible antes de cambiar de página
+    showMessage();
 
-    // Agregamos la clase 'active' a la página que queremos mostrar cite: 1, 2
-    const nextPageElement = document.getElementById(`page${pageNumber}`); /*cite: 1*/
+    // Ocultar todas las páginas suavemente
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+
+    // Mostrar la nueva página
+    const nextPageElement = document.getElementById(`page${pageNumber}`);
     if (nextPageElement) {
-        nextPageElement.classList.add('active'); /*cite: 1*/
+        nextPageElement.classList.add('active');
         
-        // --- NUEVA LÓGICA: Cambiar el fondo desenfocado --- cite: 1
-        const bgBlur = document.getElementById('page-bg-blur'); /*cite: 1*/
+        // Cambiar el fondo desenfocado global
+        const bgBlur = document.getElementById('page-bg-blur');
         if (bgBlur) {
-            // Reemplazar la imagen de fondo con la de la nueva página cite: 1
-            bgBlur.style.backgroundImage = `url('foto${pageNumber}.jpg')`; /*cite: 1*/
+            bgBlur.style.backgroundImage = `url('foto${pageNumber}.jpg')`;
         }
     }
 
-    // Disparar flores en cada cambio de página (excepto el primero) cite: 2
+    // Disparar flores en cada cambio de página (excepto el primero)
     if (pageNumber > 1) {
-        createFlowers(); /*cite: 2*/
+        createFlowers();
     }
 }
 
+// --- LÓGICA DE LA SORPRESA FINAL (PÁGINA 4) ---
 function showSurprise() {
-    // 1. Disparar la lluvia de flores y corazones
+    // 1. Asegurarnos de que el cuadro esté visible si ella estaba viendo la foto
+    showMessage();
+
+    // 2. Disparar la lluvia de flores y corazones
     createFlowers();
 
-    // --- NUEVA LÓGICA: Cambiar a la Foto 5 ---
-    
-    // Cambiar la foto nítida de fondo de la página 4 por foto5.jpg
+    // 3. REPRODUCIR LA CANCIÓN ROMÁNTICA
+    const music = document.getElementById('bg-music');
+    if (music) {
+        music.play();
+    }
+
+    // 4. Cambiar a la Foto 5 (tanto la nítida como la desenfocada)
     const page4BgImage = document.querySelector('#page4 .bg-image');
     if (page4BgImage) {
         page4BgImage.style.backgroundImage = "url('foto5.jpg')";
     }
-
-    // Cambiar también el fondo desenfocado (global) por foto5.jpg
     const globalBgBlur = document.getElementById('page-bg-blur');
     if (globalBgBlur) {
         globalBgBlur.style.backgroundImage = "url('foto5.jpg')";
     }
 
-    // ----------------------------------------
-
+    // 5. Cambiar el texto a la pregunta final
     const finalCard = document.getElementById('final-card');
     const instruction = finalCard.querySelector('.instruction');
     const finalBtn = document.getElementById('final-btn');
-    // El botón secundario "Ver foto" no necesita ocultarse, así ella podrá ver la foto nítida
 
-    // 2. Cambiar la instrucción para la pregunta final
     instruction.innerText = "¿Te gustaría que fuera tu novio?";
-    instruction.style.color = "#8e44ad"; // Lila oscuro para resaltar
+    instruction.style.color = "#8e44ad"; 
     instruction.style.fontSize = "2.2rem";
 
-    // 3. Ocultar el botón principal "¡Ya la tengo! 💜"
+    // Ocultar el botón "Ya la tengo!"
     finalBtn.style.display = 'none';
 }
 
+// --- LÓGICA PARA CREAR FLORES ---
 function createFlowers() {
     const container = document.getElementById('flower-container');
     const elements = ['💜', '🪻', '💜', '🌸', '✨']; 
@@ -86,7 +94,6 @@ function createFlowers() {
 }
 
 // --- LÓGICA PARA OCULTAR Y MOSTRAR LA TARJETA ---
-
 function hideMessage() {
     // Busca la tarjeta de la página actual y la oculta suavemente
     const activeCard = document.querySelector('.page.active .glass-card');
@@ -96,7 +103,9 @@ function hideMessage() {
     
     // Muestra el botón flotante para regresar a la lectura
     const returnBtn = document.getElementById('return-btn');
-    returnBtn.classList.add('visible');
+    if (returnBtn) {
+        returnBtn.classList.add('visible');
+    }
 }
 
 function showMessage() {
@@ -108,5 +117,7 @@ function showMessage() {
     
     // Oculta el botón flotante
     const returnBtn = document.getElementById('return-btn');
-    returnBtn.classList.remove('visible');
+    if (returnBtn) {
+        returnBtn.classList.remove('visible');
+    }
 }
