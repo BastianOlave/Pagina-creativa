@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti 💜</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="flower-container"></div>
+
+    <div id="page-bg-blur" class="bg-image-blur"></div>
+
+    <div class="main-container">
+        
+        <div class="page active" id="page1">
+            <div class="bg-image intro-bg" style="background-image: url('foto1.jpg');"></div>
+            <div class="card glass-card intro-text">
+                <h1 class="main-title">PARA TI 💜</h1>
+                <button onclick="nextPage(2)">Siguiente ➔</button>
+            </div>
+        </div>
+
+        <div class="page" id="page2">
+            <div class="bg-image" style="background-image: url('foto2.jpg');"></div>
+            <div class="card glass-card">
+                <h2 class="instruction">En este preciso lugar, busca una nota...</h2>
+                <button onclick="nextPage(3)">Siguiente ➔</button>
+            </div>
+        </div>
+
+        <div class="page" id="page3">
+            <div class="bg-image" style="background-image: url('foto3.jpg');"></div>
+            <div class="card glass-card">
+                <h2 class="instruction">En este preciso lugar, busca una nota...</h2>
+                <button onclick="nextPage(4)">Siguiente ➔</button>
+            </div>
+        </div>
+
+        <div class="page" id="page4">
+            <div class="bg-image" style="background-image: url('foto4.jpg');"></div>
+            <div class="card glass-card" id="final-card">
+                <h2 class="instruction">Busca la nota en este lugar...</h2>
+                <button id="final-btn" onclick="showSurprise()">Ya la tengo! 💜</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
