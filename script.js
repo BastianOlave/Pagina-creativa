@@ -30,18 +30,36 @@ function nextPage(pageNumber) {
 }
 
 function showSurprise() {
+    // 1. Disparar la lluvia de flores y corazones
     createFlowers();
+
+    // --- NUEVA LÓGICA: Cambiar a la Foto 5 ---
+    
+    // Cambiar la foto nítida de fondo de la página 4 por foto5.jpg
+    const page4BgImage = document.querySelector('#page4 .bg-image');
+    if (page4BgImage) {
+        page4BgImage.style.backgroundImage = "url('foto5.jpg')";
+    }
+
+    // Cambiar también el fondo desenfocado (global) por foto5.jpg
+    const globalBgBlur = document.getElementById('page-bg-blur');
+    if (globalBgBlur) {
+        globalBgBlur.style.backgroundImage = "url('foto5.jpg')";
+    }
+
+    // ----------------------------------------
 
     const finalCard = document.getElementById('final-card');
     const instruction = finalCard.querySelector('.instruction');
     const finalBtn = document.getElementById('final-btn');
+    // El botón secundario "Ver foto" no necesita ocultarse, así ella podrá ver la foto nítida
 
-    // Cambiar la instrucción para la pregunta final
+    // 2. Cambiar la instrucción para la pregunta final
     instruction.innerText = "¿Te gustaría que fuera tu novio?";
-    instruction.style.color = "#8e44ad"; 
+    instruction.style.color = "#8e44ad"; // Lila oscuro para resaltar
     instruction.style.fontSize = "2.2rem";
 
-    // Ocultar el botón
+    // 3. Ocultar el botón principal "¡Ya la tengo! 💜"
     finalBtn.style.display = 'none';
 }
 
@@ -65,4 +83,30 @@ function createFlowers() {
             }, 5000);
         }, i * 100); 
     }
+}
+
+// --- LÓGICA PARA OCULTAR Y MOSTRAR LA TARJETA ---
+
+function hideMessage() {
+    // Busca la tarjeta de la página actual y la oculta suavemente
+    const activeCard = document.querySelector('.page.active .glass-card');
+    if (activeCard) {
+        activeCard.classList.add('fade-out');
+    }
+    
+    // Muestra el botón flotante para regresar a la lectura
+    const returnBtn = document.getElementById('return-btn');
+    returnBtn.classList.add('visible');
+}
+
+function showMessage() {
+    // Busca la tarjeta de la página actual y la vuelve a mostrar
+    const activeCard = document.querySelector('.page.active .glass-card');
+    if (activeCard) {
+        activeCard.classList.remove('fade-out');
+    }
+    
+    // Oculta el botón flotante
+    const returnBtn = document.getElementById('return-btn');
+    returnBtn.classList.remove('visible');
 }
